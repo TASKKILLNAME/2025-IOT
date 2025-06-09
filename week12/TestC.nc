@@ -13,3 +13,8 @@ task void readTask() {
     }
     step += 1;
 }
+
+event void Temp.readDone(error_t error, uint16_t val) {
+    testMsg->Temp = error == SUCCESS ? val : 0xFFFA;
+    post readTask();
+}
